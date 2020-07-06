@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+    - host: hello.world
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: react-redux-service
+              servicePort: 8080
+          - path: /weatherforecast
+            backend:
+              serviceName: aspnet-service
+              servicePort: 5000
