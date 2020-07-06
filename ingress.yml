@@ -1,7 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress
+  name: minikube-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: hello.world
@@ -14,4 +16,4 @@ spec:
           - path: /weatherforecast
             backend:
               serviceName: aspnet-service
-              servicePort: 5000
+              servicePort: 80
