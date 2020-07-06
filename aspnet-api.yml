@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: aspnet-app
-          image: webmasterdevlin/aspnet-k8s:0.0.1
+          image: webmasterdevlin/aspnet-k8s:0.0.2
           resources:
             limits:
               memory: "128Mi"
