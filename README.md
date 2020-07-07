@@ -1,5 +1,7 @@
 #### ASP.NET Core web application React.js and Redux in Kubernetes
 
+    - terminal must be in admin level to run minikube
+
 ```zsh
 $ minikube config set driver {hyperv|hyperkit|virtualbox}
 ```
