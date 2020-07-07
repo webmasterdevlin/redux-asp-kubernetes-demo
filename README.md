@@ -48,3 +48,9 @@ $ kubectl apply -f ingress.yml
     - Edit your computer's /etc/hosts file with an admin access level.
     - {minikube'sIp} hello.world
     - The real hello.world website is blocked while it is being used as the proxy of the minikube's IP address
+
+Send requests
+
+```zsh
+$ for ((i=1;i<=200;i++)); do curl http://hello.world/fetch-data; done
+```
