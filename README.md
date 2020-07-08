@@ -87,3 +87,35 @@ $ helm install nginx-ingress stable/nginx-ingress \
  --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
  --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux
 ```
+
+---
+
+### TLS
+
+```zsh
+$ kubectl create namespace cert-manager
+```
+
+```zsh
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+```
+
+```zsh
+$ kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.14/deploy/manifests/00-crds.yaml
+```
+
+```zsh
+helm install cert-manager \
+    --namespace cert-manager \
+    --version v0.14.0 \
+    jetstack/cert-manager
+```
+
+```zsh
+$ kubectl get pods --namespace cert-manager
+```
+
+```zsh
+$ kubectl apply -f cluster-issuer.yaml
+```
