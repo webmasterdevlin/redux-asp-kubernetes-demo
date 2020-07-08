@@ -1,4 +1,4 @@
-#### ASP.NET Core web application React.js and Redux in Kubernetes
+### ASP.NET Core web application React.js and Redux in Kubernetes
 
     - terminal must be in admin level to run minikube
 
@@ -53,4 +53,37 @@ Send requests
 
 ```zsh
 $ for ((i=1;i<=200;i++)); do curl http://hello.world/fetch-data; done
+```
+
+---
+
+## AKS
+
+Set subscription ID and cluster
+
+```zsh
+$ az account set --subscription yourSubscriptionID
+$ az aks get-credentials --your-resource-group your-rg --name yourCluster
+```
+
+Create a namespace for your ingress resources
+
+```zsh
+$ kubectl create namespace ingress-basic
+```
+
+Add the official stable repository
+
+```zsh
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+```
+
+Use Helm to deploy an NGINX ingress controller
+
+```zsh
+$ helm install nginx-ingress stable/nginx-ingress \
+ --namespace ingress-basic \
+ --set controller.replicaCount=2 \
+ --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+ --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux
 ```
