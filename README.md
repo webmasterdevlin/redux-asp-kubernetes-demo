@@ -34,6 +34,12 @@ $ minikube dashboard
 ```
 
 ```zsh
+$ kubectl apply -f react-asp-in-minikube.yml
+```
+
+## OR
+
+```zsh
 $ kubectl apply -f seperated-yamls/aspnet-api.yml
 ```
 

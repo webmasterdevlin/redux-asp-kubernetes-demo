@@ -81,7 +81,7 @@ spec:
       targetPort: 80
 
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
@@ -91,14 +91,20 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false" # For no SSL/TLS
 spec:
   rules:
-    #- host: hello.world # edit /etc/hosts to enable this
-    - http:
-        paths:
-          - path: /
-            backend:
-              serviceName: react-redux-service
-              servicePort: 8080
-          - path: /weatherforecast
-            backend:
-              serviceName: aspnet-service
-              servicePort: 8081
+   - host: hello.world # Ingress will expect this url.
+   - http:
+      paths: # NodePort is not needed here
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: react-redux-service
+            port:
+              number: 8080
+      - path: /weatherforecast
+        pathType: Exact
+        backend:
+          service:
+            name: aspnet-service
+            port:
+              number: 8081

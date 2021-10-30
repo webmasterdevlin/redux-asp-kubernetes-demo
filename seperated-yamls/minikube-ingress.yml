@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: minikube-ingress
@@ -6,14 +6,21 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: hello.world
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: react-redux-service
-              servicePort: 8080
-          - path: /weatherforecast
-            backend:
-              serviceName: aspnet-service
-              servicePort: 80
+   - host: hello.world # Ingress will expect this url.
+   - http:
+      paths: # NodePort is not needed here
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: react-redux-service
+            port:
+              number: 8080
+      - path: /weatherforecast
+        pathType: Exact
+        backend:
+          service:
+            name: aspnet-service
+            port:
+              number: 8081
+
