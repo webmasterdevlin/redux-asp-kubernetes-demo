@@ -69,7 +69,7 @@ Set subscription ID and cluster
 
 ```zsh
 $ az account set --subscription yourSubscriptionID
-$ az aks get-credentials --your-resource-group your-rg --name yourCluster
+$ az aks get-credentials --resource-group your-rg --name yourCluster
 ```
 
 Create a namespace for your ingress resources
@@ -81,7 +81,7 @@ $ kubectl create namespace ingress-basic
 Add the official stable repository
 
 ```zsh
-$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+$ helm repo add stable https://charts.helm.sh/stable
 ```
 
 Use Helm to deploy an NGINX ingress controller
@@ -123,4 +123,8 @@ $ kubectl get pods --namespace cert-manager
 
 ```zsh
 $ kubectl apply -f cluster-issuer.yaml
+```
+
+```zsh
+$ kubectl apply -f react-asp-in-aks.yml
 ```

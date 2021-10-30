@@ -81,7 +81,7 @@ spec:
       targetPort: 80
 
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
@@ -94,17 +94,23 @@ spec:
   # frontend.<ingress ip>.nip.io
   tls:
     - hosts:
-        - frontend.20.190.25.183.nip.io
+        - frontend.20.113.9.102.nip.io
       secretName: react-asp-cert
   rules:
-    - host: frontend.20.190.25.183.nip.io
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: react-redux-service
-              servicePort: 8080
-          - path: /weatherforecast
-            backend:
-              serviceName: aspnet-service
-              servicePort: 8081
+    - host: frontend.20.113.9.102.nip.io
+    - http:
+        paths: # NodePort is not needed here
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: react-redux-service
+              port:
+                number: 8080
+        - path: /weatherforecast
+          pathType: Exact
+          backend:
+            service:
+              name: aspnet-service
+              port:
+                number: 8081
