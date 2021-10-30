@@ -34,15 +34,15 @@ $ minikube dashboard
 ```
 
 ```zsh
-$ kubectl apply -f aspnet-api.yml
+$ kubectl apply -f seperated-yamls/aspnet-api.yml
 ```
 
 ```zsh
-$ kubectl apply -f react-client-app.yml
+$ kubectl apply -f seperated-yamls/react-client-app.yml
 ```
 
 ```zsh
-$ kubectl apply -f ingress.yml
+$ kubectl apply -f seperated-yamls/minikube-ingress.yml
 ```
 
     - Edit your computer's /etc/hosts file with an admin access level.
