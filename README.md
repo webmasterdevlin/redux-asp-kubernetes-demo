@@ -1,6 +1,14 @@
-### ASP.NET Core web application React.js and Redux in Kubernetes
+## ASP.NET Core web application React.js and Redux in Kubernetes
 
     - terminal must be in admin level to run minikube
+
+## Basic Terminologies
+
+- Deployments: a template or a blueprint for creating pods (where container lives)
+- Services: IP addresses for pods
+- Ingress: Replaces IP address
+- ConfigMap: A ConfigMap is an API object used to store non-confidential data in key-value pairs.
+- Secrets: A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.
 
 Choose HyperV (for Windows), Hyperkit (for MacOS), Virtualbox (for Linux)
 

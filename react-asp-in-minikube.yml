@@ -91,7 +91,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false" # For no SSL/TLS
 spec:
   rules:
-   - host: hello.world # Ingress will expect this url.
+   - host: hello.com # Ingress will expect this url.
    - http:
       paths: # NodePort is not needed here
       - path: /
